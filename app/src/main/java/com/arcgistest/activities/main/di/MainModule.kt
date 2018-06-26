@@ -1,7 +1,6 @@
 package com.arcgistest.activities.main.di
 
 import com.arcgistest.activities.main.MainActivity
-import com.arcgistest.activities.main.MainInteractor
 import com.arcgistest.activities.main.MainPresenter
 import com.arcgistest.activities.main.router.MainActivityRouter
 import com.arcgistest.activities.main.router.MainRouter
@@ -15,12 +14,6 @@ class MainModule {
 
     @Provides
     @PerActivity
-    fun interactor(): MainInteractor {
-        return MainInteractor()
-    }
-
-    @Provides
-    @PerActivity
     fun router(navigator: MainNavigator): MainRouter = MainActivityRouter(navigator)
 
     @Provides
@@ -29,6 +22,6 @@ class MainModule {
 
     @Provides
     @PerActivity
-    fun presenter(router: MainRouter, interactor: MainInteractor) =
-            MainPresenter(interactor, router)
+    fun presenter(router: MainRouter) =
+            MainPresenter(router)
 }

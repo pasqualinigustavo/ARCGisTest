@@ -2,22 +2,19 @@ package com.arcgistest.activities.main
 
 import com.arcgistest.activities.main.router.MainRouter
 
-class MainPresenter(private val interactor: MainInteractor,
-                    private val router: MainRouter) {
+class MainPresenter(private val router: MainRouter) {
 
-    var mainActivity : MainActivity? = null
+    var mView: MainView? = null
 
-    fun bindView(mainActivity: MainActivity) {
-        this.mainActivity = mainActivity
+    fun bindView(view: MainView) {
+        this.mView = view
     }
 
     fun unbindView() {
-        this.mainActivity = null
+        this.mView = null
     }
 
     fun showMapView() {
         router.showMapView()
     }
-
-
 }

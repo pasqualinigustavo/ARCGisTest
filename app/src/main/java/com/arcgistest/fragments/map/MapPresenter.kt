@@ -27,7 +27,7 @@ class MapPresenter(private val interactor: MapInteractor,
 
     fun loadKmlFile() {
         val file = interactor.loadKmlFile()
-        if(file?.exists()) {
+        if(file.exists()) {
             val kmlLayer = KmlLayer(file.getAbsolutePath())
             view?.addLayer(kmlLayer)
         } else Log.d(TAG,"file null")

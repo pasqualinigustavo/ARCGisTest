@@ -11,6 +11,8 @@ import android.util.Log;
 import com.arcgistest.di.ApplicationDependency;
 import com.arcgistest.di.components.ApplicationComponent;
 import com.arcgistest.di.components.ComponentHolder;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 public class ARCGIApplication extends MultiDexApplication {
 
@@ -26,7 +28,7 @@ public class ARCGIApplication extends MultiDexApplication {
         graph.inject(holder);
         if (!BuildConfig.DEBUG) {
             Log.e(ARCGIApplication.class.getSimpleName(), "Crashlytics ON");
-            //Fabric.with(this, new Crashlytics());
+            Fabric.with(this, new Crashlytics());
         } else {
             Log.e(ARCGIApplication.class.getSimpleName(), "Crashlytics OFF");
         }

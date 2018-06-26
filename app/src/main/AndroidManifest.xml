@@ -27,5 +27,8 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c5ca7d4ce4bfa63940e8d159ae6bcf2867673ed6" />
     </application>
 </manifest>

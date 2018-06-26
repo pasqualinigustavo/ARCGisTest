@@ -22,7 +22,7 @@ public class ARCGIApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         this.initializeInjector();
-        ComponentHolder holder = ComponentHolder.getInstance();
+        ComponentHolder holder = ComponentHolder.INSTANCE;
         graph.inject(holder);
         if (!BuildConfig.DEBUG) {
             Log.e(ARCGIApplication.class.getSimpleName(), "Crashlytics ON");

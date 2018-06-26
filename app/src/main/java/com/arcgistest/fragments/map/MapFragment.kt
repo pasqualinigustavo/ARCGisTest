@@ -60,31 +60,6 @@ class MapFragment : BaseFragment(), MapFragmentView {
         }
     }
 
-    private fun readKmlFile() {
-        Log.d(TAG, "readKmlFile")
-
-        try {
-            val imageFile = File("android.resource://com.arcgistest/raw/file_other.kml")
-            val imageFile1 = File("android.resource://com.arcgistest/raw/file.xml")
-            val test = getResources().openRawResource(R.raw.file_other)
-            val ins = resources.openRawResource(
-                    resources.getIdentifier("file_other",
-                            "raw", activity?.getPackageName()))
-
-            val myFile = File(Uri.parse("android.resource://com.arcgistest/" + R.raw.file_other).path)
-            if (myFile.exists()) {
-                val kmlLayer = KmlLayer(myFile.absolutePath)
-                mapView.addLayer(kmlLayer)
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-            Log.e(TAG, e.message)
-        } catch (e: XmlPullParserException) {
-            e.printStackTrace()
-            Log.e(TAG, e.message)
-        }
-    }
-
     private fun createFileFromInputStream(inputStream: InputStream): File? {
 
         try {

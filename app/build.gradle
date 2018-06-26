@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 def supportVersion = "27.0.2"
 def daggerVersion = "2.11"
 def constraintLayoutVersion = "1.1.0"
-def arcgisVersion = '100.2.1'
+def arcgisVersion = '10.2.9'
 
 buildscript {
     repositories {
@@ -113,5 +113,9 @@ dependencies {
     //dialogs
     implementation('com.afollestad.material-dialogs:core:0.9.1.0') { transitive = true }
     //map
-    implementation "com.esri.arcgisruntime:arcgis-android:$arcgisVersion"
+    implementation "com.esri.arcgis.android:arcgis-android:$arcgisVersion"
+    //klm utils
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
 }
+
+apply plugin: 'com.google.gms.google-services'

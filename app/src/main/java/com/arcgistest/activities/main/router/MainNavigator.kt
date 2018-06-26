@@ -18,18 +18,6 @@ class MainNavigator(private val activity: MainActivity) {
         setFragment(fragment, tag)
     }
 
-    private fun setFragment(fragment: Fragment, addToBackStack: Boolean = false) {
-        val transaction = activity.supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.activity_content, fragment)
-        if (addToBackStack) transaction.addToBackStack(null)
-        try {
-            transaction.commitAllowingStateLoss()
-            activity.supportFragmentManager.executePendingTransactions()
-        } catch (e: Exception) {
-
-        }
-    }
-
     private fun setFragment(fragment: Fragment, tag: String) {
         try {
             activity.supportFragmentManager

@@ -31,18 +31,8 @@ class MainActivity : BaseActivity(), MainView {
         presenter.showMapView();
     }
 
-    override fun onStart() {
-        super.onStart()
-        //presenter.doOnStart()
-    }
-
-    override fun onStop() {
-        presenter.doOnStop()
-        super.onStop()
-    }
-
     override fun onDestroy() {
         super.onDestroy()
-        //presenter.unbindView()
+        presenter.unbindView()
     }
 }

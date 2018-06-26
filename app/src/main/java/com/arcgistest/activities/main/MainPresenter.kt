@@ -7,10 +7,12 @@ class MainPresenter(private val interactor: MainInteractor,
 
     var mainActivity : MainActivity? = null
 
-    fun doOnStop() = interactor.doOnStop()
-
     fun bindView(mainActivity: MainActivity) {
         this.mainActivity = mainActivity
+    }
+
+    fun unbindView() {
+        this.mainActivity = null
     }
 
     fun showMapView() {

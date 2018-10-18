@@ -1,29 +1,40 @@
 package com.arcgistest.activities.launcher
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.arcgistest.R
-import com.arcgistest.activities.main.MainActivity
+import com.arcgistest.activities.base.BaseActivity
+import com.arcgistest.activities.launcher.di.DaggerLauncherComponent
+import com.arcgistest.activities.launcher.di.LauncherComponent
+import com.arcgistest.activities.launcher.di.LauncherModule
+import javax.inject.Inject
 
-class LauncherActivity : AppCompatActivity() {
+class LauncherActivity : BaseActivity(), LauncherView {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    companion object {
+        val TAG: String = LauncherActivity::class.java.simpleName
+    }
+
+    val component: LauncherComponent by lazy {
+        DaggerLauncherComponent.builder()
+                .parent(appComponent)
+                .module(LauncherModule())
+                .target(this)
+                .build()
+    }
+
+    @Inject
+    lateinit var presenter: LauncherPresenter
+
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.setContentView(R.layout.activity_launcher)
-
-        initData()
+        setContentView(R.layout.activity_launcher)
+        component.inject(this)
+        presenter.bindView(this)
+        presenter.showMainView();
     }
 
-    private fun initData() {
-        actionOpenMainActivity()
-    }
-
-    private fun actionOpenMainActivity() {
-        this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        val i = Intent(this, MainActivity::class.java)
-        this.startActivity(i)
-        this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        this.finish()
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unbindView()
     }
 }

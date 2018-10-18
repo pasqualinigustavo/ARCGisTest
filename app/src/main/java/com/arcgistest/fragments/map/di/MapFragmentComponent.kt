@@ -10,5 +10,4 @@ import dagger.Component
 interface MapFragmentComponent {
 
     fun inject(target: MapFragment)
-
 }

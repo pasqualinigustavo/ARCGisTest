@@ -1,9 +1,11 @@
 package com.arcgistest.fragments.map.router
 
-import com.arcgistest.main.activity.router.MainNavigator
+import com.arcgistest.main.activity.router.MapFragmentNavigator
 
-class MapFragmentRouter : MapRouter {
+class MapFragmentRouter(private val navigator: MapFragmentNavigator) : MapRouter {
 
-    override fun showLocationFragment() {}
+    override fun showLocationFragment() {
+        navigator.showMapView()
+    }
 
 }
